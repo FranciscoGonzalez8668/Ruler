@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://co0ggtwmyqcj5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2qkhh"]
+size = Vector2(10, 10)
+
+[sub_resource type="ImageTexture" id="ImageTexture_3gvst"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_55jtl"]
+size = Vector2(10, 10)
+
+[node name="Enemy" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2qkhh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("ImageTexture_3gvst")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_55jtl")

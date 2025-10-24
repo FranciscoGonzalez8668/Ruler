@@ -65,9 +65,9 @@ func _do_attack() -> void:
 
 # --- Señal del Hitbox ---
 func _on_Hitbox_area_entered(area: Area2D) -> void:
-	var owner: Node = area.get_parent()
-	if owner and owner.has_method("apply_damage"):
-		owner.apply_damage(1, global_position)
+	var parent_node: Node = area.get_parent()
+	if parent_node and parent_node.has_method("apply_damage"):
+		parent_node.apply_damage(1, global_position)
 
 # --- Recibir daño ---
 func apply_damage(amount: int, from_pos: Vector2 = global_position) -> void:
