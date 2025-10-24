@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Ruler"
-run/main_scene="uid://dpt6fsomdqek"
+run/main_scene="uid://74b4ac76c7vw"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
