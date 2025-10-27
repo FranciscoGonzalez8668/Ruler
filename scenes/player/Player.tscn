@@ -1,26 +1,35 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpt6fsomdqek"]
+[gd_scene load_steps=5 format=3 uid="uid://dpt6fsomdqek"]
 
-[ext_resource type="Texture2D" uid="uid://wf0kxvuuplwj" path="res://icon.svg" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://drhw2ii8vvw5g" path="res://scripts/player/Player.gd" id="1_gfjak"]
+[ext_resource type="Texture2D" uid="uid://b87lhwl1m4nrb" path="res://assets/playerIdle.png" id="2_gfjak"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(12, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vyb7"]
-size = Vector2(6, 4)
+size = Vector2(13, 5)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 2
+platform_wall_layers = 1
+script = ExtResource("1_gfjak")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_g2els")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_3vyb7")
-
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 
 [node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_3vyb7")
+debug_color = Color(0.96466416, 4.813075e-07, 0.48964942, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_gfjak")

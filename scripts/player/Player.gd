@@ -12,6 +12,7 @@ var _dash_dir: Vector2 = Vector2.ZERO
 @export var attack_active_time: float = 0.12
 var _attack_cd: float = 0.0
 @onready var hitbox: Area2D = $Hitbox
+@onready var hitshape: CollisionShape2D = $Hitbox/CollisionShape2D
 
 # --- Vida / daño ---
 @export var max_hp: int = 3
@@ -20,8 +21,22 @@ var _attack_cd: float = 0.0
 var hp: int = 0
 var _invuln: float = 0.0
 @onready var sprite: Sprite2D = $Sprite2D
+# --- Camara -------
+@onready var cam: Camera2D = $Camera2D
+@export var cam_enabled: bool = true
+@export var cam_zoom: Vector2 = Vector2(0.5, 0.5)
+@export var cam_pos_smoothing_enabled: bool = true
+@export var cam_pos_smoothing_speed: float = 6.0
 
 func _ready() -> void:
+	if cam:
+		cam.enabled = cam_enabled
+		cam.zoom = cam_zoom
+		cam.position_smoothing_enabled = cam_pos_smoothing_enabled
+		cam.position_smoothing_speed = cam_pos_smoothing_speed
+		
+	hitbox.monitoring = false
+	hitshape.disabled=true
 	hp = max_hp
 
 func _physics_process(delta: float) -> void:
@@ -32,12 +47,10 @@ func _physics_process(delta: float) -> void:
 		sprite.modulate.a = 0.7 + 0.3 * sin(t)
 	else:
 		sprite.modulate.a = 1.0
-
-	# Dirección de movimiento
-	var dir: Vector2 = Vector2(
-		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
-		Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
-	).normalized()
+   
+	var x := Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	var y := Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
+	var dir := Vector2(x, y).normalized()
 
 	# Dash o movimiento normal
 	if _dash_timer <= 0.0:
@@ -59,9 +72,12 @@ func _physics_process(delta: float) -> void:
 		_do_attack()
 
 func _do_attack() -> void:
-	hitbox.monitoring = true
+	print("Player: attack!")
+	hitshape.disabled=false
+	hitbox.set_deferred("monitoring", true)
 	await get_tree().create_timer(attack_active_time).timeout
 	hitbox.monitoring = false
+	hitshape.disabled=true
 
 # --- Señal del Hitbox ---
 func _on_Hitbox_area_entered(area: Area2D) -> void:
@@ -84,3 +100,4 @@ func apply_damage(amount: int, from_pos: Vector2 = global_position) -> void:
 
 func _die() -> void:
 	get_tree().call_group("game", "on_player_dead")
+	

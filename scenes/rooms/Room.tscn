@@ -6,8 +6,12 @@ size = Vector2(160, 90)
 [node name="Room" type="Node2D"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_vsxtw")
+debug_color = Color(0.15801802, 0.6113045, 0.58012724, 0.41960785)
 
 [node name="SpawnPlayer" type="Marker2D" parent="."]
+gizmo_extents = 0.0
