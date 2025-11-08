@@ -72,9 +72,8 @@ func _physics_process(delta: float) -> void:
 		_do_attack()
 
 func _do_attack() -> void:
-	print("Player: attack!")
 	hitshape.disabled=false
-	hitbox.set_deferred("monitoring", true)
+	hitbox.monitoring = true
 	await get_tree().create_timer(attack_active_time).timeout
 	hitbox.monitoring = false
 	hitshape.disabled=true

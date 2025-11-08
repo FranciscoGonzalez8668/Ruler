@@ -7,7 +7,7 @@
 size = Vector2(12, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vyb7"]
-size = Vector2(13, 5)
+size = Vector2(30, 30)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 collision_layer = 2
@@ -31,5 +31,5 @@ shape = SubResource("RectangleShape2D_3vyb7")
 debug_color = Color(0.96466416, 4.813075e-07, 0.48964942, 0.41960785)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.01, 0.01)
 texture = ExtResource("2_gfjak")
