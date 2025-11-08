@@ -28,17 +28,13 @@ func _spawn_player() -> void:
     var spawn: Marker2D = _room.get_node_or_null("SpawnPlayer") as Marker2D
     _player = player_scene.instantiate() as CharacterBody2D
 
+    _room.add_child(_player) # Asegura que el player esté en el árbol antes de ajustar la posición
+
     if spawn:
-        _player.global_position = spawn.global_position
+        _player.position = spawn.position
     else:
         push_warning("[GameManager] No se encontró 'SpawnPlayer' en la Room. Usando (0,0).")
         _player.position = Vector2.ZERO
-
-    # Opción 1 (recomendada): player dentro de la room
-    _room.add_child(_player)
-
-    # Opción 2 (actual tuya): como hermano de la room
-    # add_child(_player)
 
     _player.add_to_group("player")
 

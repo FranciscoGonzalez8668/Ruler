@@ -4,12 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://b87lhwl1m4nrb" path="res://assets/playerIdle.png" id="2_gfjak"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gfjak"]
-radius = 9.0
-height = 32.0
+radius = 10.129899
+height = 36.467636
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4kuee"]
-radius = 7.6962667
-height = 28.42568
+radius = 8.85046
+height = 33.475628
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 scale = Vector2(0.9871768, 1.0200784)
@@ -25,11 +25,12 @@ position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 
 [node name="Hitbox" type="Area2D" parent="."]
+scale = Vector2(0.9803634, 0.9513504)
 collision_layer = 4
-collision_mask = 8
+collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-scale = Vector2(1.0394651, 0.9850248)
+scale = Vector2(1.0507383, 0.9850248)
 shape = SubResource("CapsuleShape2D_4kuee")
 debug_color = Color(0.96466416, 4.813075e-07, 0.48964942, 0.41960785)
 
